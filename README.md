@@ -81,7 +81,7 @@ Enable insecure Docker registry at this address and restart docker daemon:
 Adding
 ```
 
-{ "insecure-registries":["host:port"] }
+{ "insecure-registries":["$PRIMARY_IP:5000"] }
 
 ```
 
