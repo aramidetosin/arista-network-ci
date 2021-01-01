@@ -78,28 +78,33 @@ export PRIMARY_IP=$(docker network inspect bridge --format "{{range .IPAM.Config
 This ip will be used in a default url for Gitlab server and Docker registry
 
 Enable insecure Docker registry at this address and restart docker daemon:
-```Adding
+Adding
+```
 
 { "insecure-registries":["host:port"] }
 
+```
+
 to
 
+```
  /etc/docker/daemon.json
+```
 
 did not work for me until I created the file
-
-/etc/default/docker
-
-and put the line
-
-DOCKER_OPTS="--config-file=/etc/docker/daemon.json"
-
-in it and then restarted the docker daemon with
-
-sudo systemctl stop docker and sudo systemctl start docker.
-
-For some reason just doing a sudo systemctl restart docker did not work. It threw an error about trying to restart the service to quickly.
 ```
+/etc/default/docker
+```
+and put the line
+```
+DOCKER_OPTS="--config-file=/etc/docker/daemon.json"
+```
+in it and then restarted the docker daemon with
+```
+sudo systemctl stop docker and sudo systemctl start docker.
+```
+For some reason just doing a sudo systemctl restart docker did not work. It threw an error about trying to restart the service to quickly.
+
 
 Spin-up the local Gitlab server, runner, Batfish server and a private docker registry(assuming docker-compose is [installed](https://docs.docker.com/compose/install/))
 
